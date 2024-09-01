@@ -242,7 +242,7 @@ class __HomeContentState extends State<_HomeContent> {
                           showingSuggestions = filteredSuggestions.isNotEmpty;
                         });
                       },
-                      maxLength: 30,
+                      //maxLength: 30,
                       controller: textEditingController,
                       focusNode: focusNode,
                       style: const TextStyle(

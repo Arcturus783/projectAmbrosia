@@ -630,7 +630,7 @@ class AnimatedGauge extends StatelessWidget {
                   annotations: <GaugeAnnotation>[
                     GaugeAnnotation(
                       widget: Text(
-                        currentValue.toStringAsFixed(0),
+                        "",
                         style: const TextStyle(fontSize: 30.0),
                       ),
                       angle: 90,
