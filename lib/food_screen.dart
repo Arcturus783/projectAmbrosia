@@ -18,6 +18,7 @@ class FoodScreen extends StatefulWidget {
     required this.cholesterol,
     required this.sodium,
     required this.addedSugars,
+    required this.foodName,
   });
 
   final double protein;
@@ -26,8 +27,7 @@ class FoodScreen extends StatefulWidget {
   final double cholesterol;
   final double sodium;
   final double addedSugars;
-
-
+  final String foodName;
 
   @override
   // ignore: library_private_types_in_public_api
@@ -39,8 +39,6 @@ class _FoodScreenState extends State<FoodScreen>
   late AnimationController _animationController;
 
   String geminiText = "Working on an overview...";
-
-  String foodName = "Lays potato chips"; //using as a default for now
 
   //double calories = 540; //calories
   //double protein = 12; //grams
@@ -75,7 +73,7 @@ class _FoodScreenState extends State<FoodScreen>
     );
     final content = [
       Content.text(
-          "Overall, summarize the health quality of $foodName without using any numerical evidence, only qualitative data. Specifically, answer the following questions: How healthy or unhealthy is it and why (if it's unhealthy, can you still have it once in awhile? What are some good alternatives to it if it is unhealthy, and if it's healthy, what are some similar foods? Be appropriate and professional, do not ask for any feedback, introduce yourself, or ask for more information in any way. In other words, write this as if it were written by a human with sole purpose of conveying information to a reader. Additionally, use fairly simple terminology such that a 13 or 14 year old could easily understand. Finally, use no more than 320 words.")
+          "Overall, summarize the health quality of ${widget.foodName} without using any numerical evidence, only qualitative data. Specifically, answer the following questions: How healthy or unhealthy is it and why (if it's unhealthy, can you still have it once in awhile? What are some good alternatives to it if it is unhealthy, and if it's healthy, what are some similar foods? Be appropriate and professional, do not ask for any feedback, introduce yourself, or ask for more information in any way. In other words, write this as if it were written by a human with sole purpose of conveying information to a reader. Additionally, use fairly simple terminology such that a 13 or 14 year old could easily understand. Finally, use no more than 320 words.")
     ];
 
     JUSTLOADTHESTUPIDMODEL(model, content);
@@ -96,7 +94,7 @@ class _FoodScreenState extends State<FoodScreen>
     );
     final content = [
       Content.text(
-          "From a healthiness perspective, analyze what it means for the food item $foodName to have $value of $type. Be appropriate and professional, do not ask for any feedback, introduce yourself, or ask for more information in any way. In other words, write this as if it were written by a human with sole purpose of conveying information to a reader. Additionally, use fairly simple terminology such that a 13 or 14 year old could easily understand. Finally, use no more than 250 words.")
+          "From a healthiness perspective, analyze what it means for the food item ${widget.foodName} to have $value of $type. Be appropriate and professional, do not ask for any feedback, introduce yourself, or ask for more information in any way. In other words, write this as if it were written by a human with sole purpose of conveying information to a reader. Additionally, use fairly simple terminology such that a 13 or 14 year old could easily understand. Finally, use no more than 250 words.")
     ];
 
     switch (type) {
@@ -268,9 +266,12 @@ class _FoodScreenState extends State<FoodScreen>
                                       child: AnimatedGauge(
                                           value: 100 * (widget.calories / 2000),
                                           color: Color.fromRGBO(24, 23, 23, 1),
-                                          animation: _animationController),
+                                          animation: _animationController,
+                                          trueVal: widget.calories.toString() + " cal",
+                                          ),
                                       onPressed: () {
-                                        gaugeClicked(widget.calories, "calories");
+                                        gaugeClicked(
+                                            widget.calories, "calories");
                                       },
                                     ),
                                   ),
@@ -298,7 +299,9 @@ class _FoodScreenState extends State<FoodScreen>
                                       child: AnimatedGauge(
                                           value: 100 * (widget.protein / 50),
                                           color: Color.fromRGBO(24, 23, 23, 1),
-                                          animation: _animationController),
+                                          animation: _animationController,
+                                          trueVal: widget.protein.toString() + " g",
+                                          ),
                                       onPressed: () {
                                         gaugeClicked(
                                             widget.protein, "grams of protein");
@@ -333,10 +336,12 @@ class _FoodScreenState extends State<FoodScreen>
                                       child: AnimatedGauge(
                                           value: 100 * (widget.totalFats / 78),
                                           color: Color.fromRGBO(24, 23, 23, 1),
-                                          animation: _animationController),
+                                          animation: _animationController,
+                                          trueVal: widget.totalFats.toString() + " g",
+                                          ),
                                       onPressed: () {
-                                        gaugeClicked(
-                                            widget.totalFats, "grams of total fats");
+                                        gaugeClicked(widget.totalFats,
+                                            "grams of total fats");
                                       },
                                     ),
                                   ),
@@ -361,9 +366,12 @@ class _FoodScreenState extends State<FoodScreen>
                                   child: SizedBox(
                                     child: TextButton(
                                       child: AnimatedGauge(
-                                          value: 100 * (widget.cholesterol / 300),
+                                          value:
+                                              100 * (widget.cholesterol / 300),
                                           color: Color.fromRGBO(24, 23, 23, 1),
-                                          animation: _animationController),
+                                          animation: _animationController,
+                                          trueVal: widget.cholesterol.toString() + " mg",
+                                          ),
                                       onPressed: () {
                                         gaugeClicked(widget.cholesterol,
                                             "milligrams of cholesterol");
@@ -398,10 +406,12 @@ class _FoodScreenState extends State<FoodScreen>
                                       child: AnimatedGauge(
                                           value: 100 * (widget.sodium / 2300),
                                           color: Color.fromRGBO(24, 23, 23, 1),
-                                          animation: _animationController),
+                                          animation: _animationController,
+                                          trueVal: widget.sodium.toString() + " mg",
+                                          ),
                                       onPressed: () {
-                                        gaugeClicked(
-                                            widget.sodium, "milligrams of sodium");
+                                        gaugeClicked(widget.sodium,
+                                            "milligrams of sodium");
                                       },
                                     ),
                                   ),
@@ -426,9 +436,12 @@ class _FoodScreenState extends State<FoodScreen>
                                   child: SizedBox(
                                     child: TextButton(
                                       child: AnimatedGauge(
-                                          value: 100 * (widget.addedSugars / 50),
+                                          value:
+                                              100 * (widget.addedSugars / 50),
                                           color: Color.fromRGBO(24, 23, 23, 1),
-                                          animation: _animationController),
+                                          animation: _animationController,
+                                          trueVal: widget.addedSugars.toString() + " g",
+                                          ),
                                       onPressed: () {
                                         gaugeClicked(widget.addedSugars,
                                             "grams of added sugars");
@@ -477,25 +490,27 @@ class _FoodScreenState extends State<FoodScreen>
                                                   child: SingleChildScrollView(
                                                     padding: EdgeInsets.all(
                                                         30), // Added padding for offset
-                                                    child: Text(
-                                                      geminiText,
-                                                      softWrap: true,
-                                                      maxLines: 1000,
-                                                      overflow:
-                                                          TextOverflow.clip,
-                                                      style: TextStyle(
-                                                        fontSize:
-                                                            (MediaQuery.of(
-                                                                        context)
-                                                                    .size
-                                                                    .width /
-                                                                50),
-                                                        color: Colors.white,
-                                                      ),
-                                                      textAlign:
-                                                          TextAlign.center,
-                                                    ),
-                                                  ),
+                                                    child: 
+                                                      Text(
+                                                             geminiText,
+                                                             softWrap: true,
+                                                             maxLines: 1000,
+                                                             overflow:
+                                                                 TextOverflow.clip,
+                                                             style: TextStyle(
+                                                               fontSize:
+                                                                   (MediaQuery.of(
+                                                                               context)
+                                                                           .size
+                                                                           .width /
+                                                                       50),
+                                                                 color: Colors.white,
+                                                                 ),
+                                                             textAlign:
+                                                               TextAlign.center,
+                                                           ),
+
+                                                  )
                                                 );
                                               }),
                                             ),
@@ -559,12 +574,14 @@ class AnimatedGauge extends StatelessWidget {
   final double value;
   final Color color;
   final Animation<double> animation;
+  final String trueVal;
 
   const AnimatedGauge({
     Key? key,
     required this.value,
     required this.color,
     required this.animation,
+    required this.trueVal,
   }) : super(key: key);
 
   @override
@@ -630,7 +647,7 @@ class AnimatedGauge extends StatelessWidget {
                   annotations: <GaugeAnnotation>[
                     GaugeAnnotation(
                       widget: Text(
-                        "",
+                        trueVal,
                         style: const TextStyle(fontSize: 30.0),
                       ),
                       angle: 90,

@@ -7,6 +7,7 @@ final secret = '7bfbf9e117a64324bad70ea90db07089';
 final tokenEndpoint = Uri.parse('https://oauth.fatsecret.com/connect/token');
 
 Future<List<String>> searchProduct(String product) async {
+
   try {
     var client = await auth.clientCredentialsGrant(tokenEndpoint, id, secret);
     var token = client.credentials.accessToken;
@@ -71,34 +72,54 @@ Future<List<dynamic>> getFacts(product) async {
     final encodedBody = Uri(queryParameters: body).query;
     var response = await http.post(url, headers: headers, body: encodedBody);
 
-     if (response.statusCode == 200) {
+    if (response.statusCode == 200) {
       final Map<String, dynamic> data = json.decode(response.body);
-      
+
       if (data['foods_search'] != null &&
           data['foods_search']['results'] != null &&
           data['foods_search']['results']['food'] is List &&
           data['foods_search']['results']['food'].isNotEmpty &&
           data['foods_search']['results']['food'][0]['servings'] != null &&
-          data['foods_search']['results']['food'][0]['servings']['serving'] is List &&
-          data['foods_search']['results']['food'][0]['servings']['serving'].isNotEmpty) {
-        
-        var protein = data['foods_search']['results']['food'][0]['servings']['serving'][0]['protein'] ?? '0.00';
-        var calories = data['foods_search']['results']['food'][0]['servings']['serving'][0]['calories'] ?? '0.00';
-        var totalFats = data['foods_search']['results']['food'][0]['servings']['serving'][0]['fat'] ?? '0.00';
-        var cholesterol = data['foods_search']['results']['food'][0]['servings']['serving'][0]['cholesterol'] ?? '0.00';
-        var sodium = data['foods_search']['results']['food'][0]['servings']['serving'][0]['sodium'] ?? '0.00';
-        var addedSugars = data['foods_search']['results']['food'][0]['servings']['serving'][0]['added_sugars'] ?? '0.00';
+          data['foods_search']['results']['food'][0]['servings']['serving']
+              is List &&
+          data['foods_search']['results']['food'][0]['servings']['serving']
+              .isNotEmpty) {
+        var protein = data['foods_search']['results']['food'][0]['servings']
+                ['serving'][0]['protein'] ??
+            '0.00';
+        var calories = data['foods_search']['results']['food'][0]['servings']
+                ['serving'][0]['calories'] ??
+            '0.00';
+        var totalFats = data['foods_search']['results']['food'][0]['servings']
+                ['serving'][0]['fat'] ??
+            '0.00';
+        var cholesterol = data['foods_search']['results']['food'][0]['servings']
+                ['serving'][0]['cholesterol'] ??
+            '0.00';
+        var sodium = data['foods_search']['results']['food'][0]['servings']
+                ['serving'][0]['sodium'] ??
+            '0.00';
+        var addedSugars = data['foods_search']['results']['food'][0]['servings']
+                ['serving'][0]['added_sugars'] ??
+            '0.00';
 
-        return [protein.toString(), calories.toString(), totalFats.toString(), cholesterol.toString(), sodium.toString(), addedSugars.toString()];
-
-
+        return [
+          protein.toString(),
+          calories.toString(),
+          totalFats.toString(),
+          cholesterol.toString(),
+          sodium.toString(),
+          addedSugars.toString()
+        ];
       } else {
         return ['error', 'No protein data found'];
       }
     } else {
-      return ['error', 'API request failed with status: ${response.statusCode}'];
+      return [
+        'error',
+        'API request failed with status: ${response.statusCode}'
+      ];
     }
-
   } catch (e) {
     return ['error', e.toString()];
   }

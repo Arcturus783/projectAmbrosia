@@ -4,6 +4,13 @@ import 'food_screen.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'newDB.dart' as food;
 
+/*
+Working on corners:
+
+look at lines 220-230
+this is where the new fix is being implemented
+*/
+
 void main() {
   runApp(const MyApp());
 }
@@ -143,6 +150,8 @@ class _HomeContent extends StatefulWidget {
 class __HomeContentState extends State<_HomeContent> {
   String searchText = '';
   bool showingSuggestions = false;
+  double bRad = 35.0;
+  double tRad = 35.0;
   bool clicked = false;
   List<String> filteredSuggestions = [];
   //var tempDebugger = "temporary - don't remove";
@@ -216,6 +225,18 @@ class __HomeContentState extends State<_HomeContent> {
                             item.toLowerCase().contains(query);
                       }).toList();
 
+                      if (filteredSuggestions.length == 1 || filteredSuggestions.isEmpty) {
+                        setState(() {
+                          tRad = 35.0;
+                          bRad = 35.0;
+                        });
+                      } else {
+                        setState(() {
+                          tRad = 35.0;
+                          bRad = 0.0;
+                        });
+                      }
+
                       setState(() {
                         // Show suggestions if there are any left after filtering
                         showingSuggestions = filteredSuggestions.isNotEmpty;
@@ -238,11 +259,18 @@ class __HomeContentState extends State<_HomeContent> {
                   ) {
                     return TextField(
                       onChanged: (value) {
+                        if (value.length > 30) {
+                          textEditingController.text = value.substring(0, 30);
+                          textEditingController.selection =
+                              TextSelection.fromPosition(
+                            TextPosition(offset: 30),
+                          );
+                        }
                         setState(() {
                           showingSuggestions = filteredSuggestions.isNotEmpty;
                         });
                       },
-                      maxLength: 30,
+                      //maxLength: 30,
                       controller: textEditingController,
                       focusNode: focusNode,
                       style: const TextStyle(
@@ -254,10 +282,8 @@ class __HomeContentState extends State<_HomeContent> {
                         filled: true,
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.vertical(
-                            top: Radius.circular(
-                                showingSuggestions ? 20.0 : 35.0),
-                            bottom: Radius.circular(
-                                showingSuggestions ? 0.0 : 35.0),
+                            top: Radius.circular(tRad),
+                            bottom: Radius.circular(bRad),
                           ),
                           borderSide: const BorderSide(
                             color: Color.fromARGB(255, 32, 32, 32),
@@ -265,8 +291,7 @@ class __HomeContentState extends State<_HomeContent> {
                           ),
                         ),
                         border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(
-                              showingSuggestions ? 20.0 : 35.0),
+                          borderRadius: BorderRadius.circular(35.0),
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(35.0),
@@ -363,7 +388,10 @@ class __HomeContentState extends State<_HomeContent> {
 
                                                 if (stuff.isNotEmpty &&
                                                     stuff[0] != 'error') {
-
+                                              setState(() {
+                                                      bRad = 35.0;
+                                                      tRad = 35.0;
+                                              });
                                                   /*
                                                   setState(() {
                                                     tempDebugger =
@@ -377,15 +405,27 @@ class __HomeContentState extends State<_HomeContent> {
                                                       MaterialPageRoute(
                                                         builder: (context) =>
                                                             FoodScreen(
-                                                                protein: double.parse(stuff[0]),
-                                                                calories: double.parse(stuff[1]),
-                                                                totalFats: double.parse(stuff[2]),
-                                                                cholesterol: double.parse(stuff[3]),
-                                                                sodium: double.parse(stuff[4]),
-                                                                addedSugars: double.parse(stuff[5]),
-                                                            ),
+                                                          protein: double.parse(
+                                                              stuff[0]),
+                                                          calories:
+                                                              double.parse(
+                                                                  stuff[1]),
+                                                          totalFats:
+                                                              double.parse(
+                                                                  stuff[2]),
+                                                          cholesterol:
+                                                              double.parse(
+                                                                  stuff[3]),
+                                                          sodium: double.parse(
+                                                              stuff[4]),
+                                                          addedSugars:
+                                                              double.parse(
+                                                                  stuff[5]),
+                                                          foodName: option,
+                                                        ),
                                                       ),
                                                     );
+                                                    
                                                   } catch (e) {
                                                     /*
                                                     setState(() {
@@ -410,7 +450,7 @@ class __HomeContentState extends State<_HomeContent> {
                                                 });
                                                 */
                                               }
-                                              
+
                                               setState(() {
                                                 clicked = true;
                                               });
