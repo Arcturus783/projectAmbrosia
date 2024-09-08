@@ -19,6 +19,7 @@ class FoodScreen extends StatefulWidget {
     required this.sodium,
     required this.addedSugars,
     required this.foodName,
+    required this.thing,
   });
 
   final double protein;
@@ -28,6 +29,8 @@ class FoodScreen extends StatefulWidget {
   final double sodium;
   final double addedSugars;
   final String foodName;
+// Suggested code may be subject to a license. Learn more: ~LicenseLog:735726862.
+  final String thing;
 
   @override
   // ignore: library_private_types_in_public_api
@@ -492,7 +495,7 @@ class _FoodScreenState extends State<FoodScreen>
                                                         30), // Added padding for offset
                                                     child: 
                                                       Text(
-                                                             geminiText,
+                                                             geminiText + widget.thing,
                                                              softWrap: true,
                                                              maxLines: 1000,
                                                              overflow:
@@ -518,7 +521,7 @@ class _FoodScreenState extends State<FoodScreen>
                                         : Container(),
                                   ),
                                 ),
-                              ),
+                              )
                             ]),
                           ],
                         ),

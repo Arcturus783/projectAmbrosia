@@ -422,6 +422,8 @@ class __HomeContentState extends State<_HomeContent> {
                                                               double.parse(
                                                                   stuff[5]),
                                                           foodName: option,
+// Suggested code may be subject to a license. Learn more: ~LicenseLog:743736843.
+                                                          thing: "searchText",
                                                         ),
                                                       ),
                                                     );
