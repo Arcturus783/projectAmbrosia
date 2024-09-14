@@ -20,6 +20,9 @@ class FoodScreen extends StatefulWidget {
     required this.addedSugars,
     required this.foodName,
     required this.thing,
+
+    required this.servingSize,
+    required this.allergenNames,
   });
 
   final double protein;
@@ -29,8 +32,9 @@ class FoodScreen extends StatefulWidget {
   final double sodium;
   final double addedSugars;
   final String foodName;
-// Suggested code may be subject to a license. Learn more: ~LicenseLog:735726862.
   final String thing;
+  final String servingSize;
+  final List<dynamic> allergenNames;
 
   @override
   // ignore: library_private_types_in_public_api
@@ -267,11 +271,12 @@ class _FoodScreenState extends State<FoodScreen>
                                   child: SizedBox(
                                     child: TextButton(
                                       child: AnimatedGauge(
-                                          value: 100 * (widget.calories / 2000),
-                                          color: Color.fromRGBO(24, 23, 23, 1),
-                                          animation: _animationController,
-                                          trueVal: widget.calories.toString() + " cal",
-                                          ),
+                                        value: 100 * (widget.calories / 2000),
+                                        color: Color.fromRGBO(24, 23, 23, 1),
+                                        animation: _animationController,
+                                        trueVal:
+                                            widget.calories.toString() + " cal",
+                                      ),
                                       onPressed: () {
                                         gaugeClicked(
                                             widget.calories, "calories");
@@ -300,11 +305,12 @@ class _FoodScreenState extends State<FoodScreen>
                                   child: SizedBox(
                                     child: TextButton(
                                       child: AnimatedGauge(
-                                          value: 100 * (widget.protein / 50),
-                                          color: Color.fromRGBO(24, 23, 23, 1),
-                                          animation: _animationController,
-                                          trueVal: widget.protein.toString() + " g",
-                                          ),
+                                        value: 100 * (widget.protein / 50),
+                                        color: Color.fromRGBO(24, 23, 23, 1),
+                                        animation: _animationController,
+                                        trueVal:
+                                            widget.protein.toString() + " g",
+                                      ),
                                       onPressed: () {
                                         gaugeClicked(
                                             widget.protein, "grams of protein");
@@ -337,11 +343,12 @@ class _FoodScreenState extends State<FoodScreen>
                                   child: SizedBox(
                                     child: TextButton(
                                       child: AnimatedGauge(
-                                          value: 100 * (widget.totalFats / 78),
-                                          color: Color.fromRGBO(24, 23, 23, 1),
-                                          animation: _animationController,
-                                          trueVal: widget.totalFats.toString() + " g",
-                                          ),
+                                        value: 100 * (widget.totalFats / 78),
+                                        color: Color.fromRGBO(24, 23, 23, 1),
+                                        animation: _animationController,
+                                        trueVal:
+                                            widget.totalFats.toString() + " g",
+                                      ),
                                       onPressed: () {
                                         gaugeClicked(widget.totalFats,
                                             "grams of total fats");
@@ -369,12 +376,12 @@ class _FoodScreenState extends State<FoodScreen>
                                   child: SizedBox(
                                     child: TextButton(
                                       child: AnimatedGauge(
-                                          value:
-                                              100 * (widget.cholesterol / 300),
-                                          color: Color.fromRGBO(24, 23, 23, 1),
-                                          animation: _animationController,
-                                          trueVal: widget.cholesterol.toString() + " mg",
-                                          ),
+                                        value: 100 * (widget.cholesterol / 300),
+                                        color: Color.fromRGBO(24, 23, 23, 1),
+                                        animation: _animationController,
+                                        trueVal: widget.cholesterol.toString() +
+                                            " mg",
+                                      ),
                                       onPressed: () {
                                         gaugeClicked(widget.cholesterol,
                                             "milligrams of cholesterol");
@@ -407,11 +414,12 @@ class _FoodScreenState extends State<FoodScreen>
                                   child: SizedBox(
                                     child: TextButton(
                                       child: AnimatedGauge(
-                                          value: 100 * (widget.sodium / 2300),
-                                          color: Color.fromRGBO(24, 23, 23, 1),
-                                          animation: _animationController,
-                                          trueVal: widget.sodium.toString() + " mg",
-                                          ),
+                                        value: 100 * (widget.sodium / 2300),
+                                        color: Color.fromRGBO(24, 23, 23, 1),
+                                        animation: _animationController,
+                                        trueVal:
+                                            widget.sodium.toString() + " mg",
+                                      ),
                                       onPressed: () {
                                         gaugeClicked(widget.sodium,
                                             "milligrams of sodium");
@@ -439,12 +447,12 @@ class _FoodScreenState extends State<FoodScreen>
                                   child: SizedBox(
                                     child: TextButton(
                                       child: AnimatedGauge(
-                                          value:
-                                              100 * (widget.addedSugars / 50),
-                                          color: Color.fromRGBO(24, 23, 23, 1),
-                                          animation: _animationController,
-                                          trueVal: widget.addedSugars.toString() + " g",
-                                          ),
+                                        value: 100 * (widget.addedSugars / 50),
+                                        color: Color.fromRGBO(24, 23, 23, 1),
+                                        animation: _animationController,
+                                        trueVal: widget.addedSugars.toString() +
+                                            " g",
+                                      ),
                                       onPressed: () {
                                         gaugeClicked(widget.addedSugars,
                                             "grams of added sugars");
@@ -493,27 +501,89 @@ class _FoodScreenState extends State<FoodScreen>
                                                   child: SingleChildScrollView(
                                                     padding: EdgeInsets.all(
                                                         30), // Added padding for offset
-                                                    child: 
-                                                      Text(
-                                                             geminiText + widget.thing,
-                                                             softWrap: true,
-                                                             maxLines: 1000,
-                                                             overflow:
-                                                                 TextOverflow.clip,
-                                                             style: TextStyle(
-                                                               fontSize:
-                                                                   (MediaQuery.of(
-                                                                               context)
-                                                                           .size
-                                                                           .width /
-                                                                       50),
-                                                                 color: Colors.white,
-                                                                 ),
-                                                             textAlign:
-                                                               TextAlign.center,
-                                                           ),
+                                                    child: Column(
+                                                      children: [
+                                                        // Row for food name and tag
+                                                        Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .center,
+                                                          children: [
+                                                            // Display food name
+                                                            Text(
+                                                              widget.foodName,
+                                                              style: TextStyle(
+                                                                fontSize: 30,
+                                                                color: Colors
+                                                                    .white,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                              ),
+                                                            ),
+                                                            SizedBox(
+                                                                width:
+                                                                    10), // Spacing between name and tag
 
-                                                  )
+                                                            // Display tag with responsive color based on media query
+                                                            Container(
+                                                              padding: EdgeInsets
+                                                                  .symmetric(
+                                                                      horizontal:
+                                                                          12,
+                                                                      vertical:
+                                                                          6),
+                                                              decoration:
+                                                                  BoxDecoration(
+                                                                color: Colors
+                                                                    .green,
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            10),
+                                                              ),
+                                                              child: Text(
+                                                                '70.00',
+                                                                style:
+                                                                    TextStyle(
+                                                                  color: Colors
+                                                                      .white,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                  fontSize: 16,
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                        SizedBox(
+                                                            height:
+                                                                10), // Space between name/tag and Gemini text
+
+                                                        // Display the Gemini text response
+                                                        Text(
+                                                          geminiText +
+                                                              widget.thing,
+                                                          softWrap: true,
+                                                          maxLines: 1000,
+                                                          overflow:
+                                                              TextOverflow.clip,
+                                                          style: TextStyle(
+                                                            fontSize:
+                                                                (MediaQuery.of(
+                                                                            context)
+                                                                        .size
+                                                                        .width /
+                                                                    50),
+                                                            color: Colors.white,
+                                                          ),
+                                                          textAlign:
+                                                              TextAlign.center,
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
                                                 );
                                               }),
                                             ),
@@ -521,7 +591,7 @@ class _FoodScreenState extends State<FoodScreen>
                                         : Container(),
                                   ),
                                 ),
-                              )
+                              ),
                             ]),
                           ],
                         ),
@@ -549,18 +619,65 @@ class _FoodScreenState extends State<FoodScreen>
                       child: StatefulBuilder(builder: (context, setState) {
                         return Center(
                           child: SingleChildScrollView(
-                              child: Text(
-                            geminiText,
-                            softWrap: true,
-                            maxLines: 1000,
-                            overflow: TextOverflow.clip,
-                            style: TextStyle(
-                              fontSize:
-                                  (MediaQuery.of(context).size.width / 35),
-                              color: Colors.white,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                // Display the food name
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    // Display food name
+                                    Text(
+                                      widget.foodName,
+                                      style: TextStyle(
+                                        fontSize: 20,
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                        width:
+                                            10), // Spacing between name and tag
+
+                                    // Display tag with responsive color based on media query
+                                    Container(
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 8, vertical: 4),
+                                      decoration: BoxDecoration(
+                                        color: Colors.green,
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
+                                      child: Text(
+                                        'healthy',
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 12,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                    height:
+                                        10), // Space between food name and Gemini text
+
+                                // Display the Gemini text response
+                                Text(
+                                  geminiText,
+                                  softWrap: true,
+                                  maxLines: 1000,
+                                  overflow: TextOverflow.clip,
+                                  style: TextStyle(
+                                    fontSize:
+                                        MediaQuery.of(context).size.width / 35,
+                                    color: Colors.white,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ],
                             ),
-                            textAlign: TextAlign.center,
-                          )),
+                          ),
                         );
                       }),
                     ),

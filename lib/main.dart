@@ -308,15 +308,17 @@ class __HomeContentState extends State<_HomeContent> {
                         suffixIcon: IconButton(
                           icon: const Icon(Icons.search),
                           onPressed: () {
-                            /*
+                            
                             Navigator.push(
                               context,
                               MaterialPageRoute(
                                 builder: (context) =>
-                                    const FoodScreen(protein: 200.0),
+// Suggested code may be subject to a license. Learn more: ~LicenseLog:2499929009.
+// Suggested code may be subject to a license. Learn more: ~LicenseLog:3531147474.
+                                    FoodScreen(protein: 200.0,calories: 200.0,totalFats: 200.0,addedSugars: 200.0,sodium: 200.0,cholesterol: 200.0,foodName: "feces",thing: "feces",servingSize: "none",allergenNames: ["eww", "gross"]),
                               ),
                             );
-                            */
+                            
                             setState(() {
                               clicked = true;
                               searchText = textEditingController.text;
@@ -424,6 +426,8 @@ class __HomeContentState extends State<_HomeContent> {
                                                           foodName: option,
 // Suggested code may be subject to a license. Learn more: ~LicenseLog:743736843.
                                                           thing: "searchText",
+                                                          servingSize: stuff[6],
+                                                          allergenNames: stuff[7]
                                                         ),
                                                       ),
                                                     );
