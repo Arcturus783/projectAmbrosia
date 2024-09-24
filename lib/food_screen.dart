@@ -615,7 +615,7 @@ class _FoodScreenState extends State<FoodScreen>
             child: MediaQuery.of(context).size.width < 1150
                 ? Container(
                     margin: EdgeInsets.only(left: 10, right: 10),
-                    height: 300,
+                    height: 360,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(
                           MediaQuery.of(context).size.width / 25),
@@ -653,11 +653,11 @@ class _FoodScreenState extends State<FoodScreen>
                                       padding: EdgeInsets.symmetric(
                                           horizontal: 8, vertical: 4),
                                       decoration: BoxDecoration(
-                                        color: Colors.green,
-                                        borderRadius: BorderRadius.circular(10),
+                                        color: Color.fromARGB(200, 255, 190, 100),
+                                        borderRadius: BorderRadius.circular(8),
                                       ),
                                       child: Text(
-                                        'healthy',
+                                        widget.servingSize,
                                         style: TextStyle(
                                           color: Colors.white,
                                           fontWeight: FontWeight.bold,
