@@ -102,13 +102,15 @@ Future<List<dynamic>> getFacts(product) async {
         var addedSugars = data['foods_search']['results']['food'][0]['servings']
                 ['serving'][0]['added_sugars'] ??
             '0.00';
-        
+
+
         var servings = data['foods_search']['results']['food'][0]['servings']
                 ['serving'][0]['serving_description'] ??
             '--';
+        /*
         var allergens = data['foods_search']['results']['food'][0]['food_attributes']['allergens']['allergen'].map((allergen) => allergen['name']).toList() ??
             [];
-        
+        */
 
         return [
           protein.toString(),
@@ -119,7 +121,7 @@ Future<List<dynamic>> getFacts(product) async {
           addedSugars.toString(),
 
           servings,
-          allergens,
+          //allergens,
         ];
       } else {
         return ['error', 'No protein data found'];

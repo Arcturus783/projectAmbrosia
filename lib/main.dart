@@ -305,26 +305,9 @@ class __HomeContentState extends State<_HomeContent> {
                           fontSize: 16.0,
                           color: Color.fromARGB(141, 153, 153, 153),
                         ),
-                        suffixIcon: IconButton(
-                          icon: const Icon(Icons.search),
-                          onPressed: () {
-                            
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) =>
-// Suggested code may be subject to a license. Learn more: ~LicenseLog:2499929009.
-// Suggested code may be subject to a license. Learn more: ~LicenseLog:3531147474.
-                                    FoodScreen(protein: 200.0,calories: 200.0,totalFats: 200.0,addedSugars: 200.0,sodium: 200.0,cholesterol: 200.0,foodName: "feces",thing: "feces",servingSize: "none",allergenNames: ["eww", "gross"]),
-                              ),
-                            );
-                            
-                            setState(() {
-                              clicked = true;
-                              searchText = textEditingController.text;
-                            });
-                          },
-                          color: const Color.fromARGB(255, 129, 129, 129),
+                        suffixIcon: Icon(
+                            Icons.search,
+                            color: const Color.fromARGB(255, 129, 129, 129),
                         ),
                       ),
                     );
@@ -425,9 +408,8 @@ class __HomeContentState extends State<_HomeContent> {
                                                                   stuff[5]),
                                                           foodName: option,
 // Suggested code may be subject to a license. Learn more: ~LicenseLog:743736843.
-                                                          thing: "searchText",
                                                           servingSize: stuff[6],
-                                                          allergenNames: stuff[7]
+                                                          //allergenNames: stuff[7]
                                                         ),
                                                       ),
                                                     );

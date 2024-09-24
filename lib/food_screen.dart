@@ -19,10 +19,9 @@ class FoodScreen extends StatefulWidget {
     required this.sodium,
     required this.addedSugars,
     required this.foodName,
-    required this.thing,
 
     required this.servingSize,
-    required this.allergenNames,
+    //required this.allergenNames,
   });
 
   final double protein;
@@ -32,9 +31,8 @@ class FoodScreen extends StatefulWidget {
   final double sodium;
   final double addedSugars;
   final String foodName;
-  final String thing;
   final String servingSize;
-  final List<dynamic> allergenNames;
+  //final List<dynamic> allergenNames;
 
   @override
   // ignore: library_private_types_in_public_api
@@ -64,6 +62,7 @@ class _FoodScreenState extends State<FoodScreen>
   String cholesterolResponse = "";
   String sodiumResponse = "";
   String addedSugarsResponse = "";
+  String updatedName = "sigma ";
 
   @override
   void initState() {
@@ -80,10 +79,18 @@ class _FoodScreenState extends State<FoodScreen>
     );
     final content = [
       Content.text(
-          "Overall, summarize the health quality of ${widget.foodName} without using any numerical evidence, only qualitative data. Specifically, answer the following questions: How healthy or unhealthy is it and why (if it's unhealthy, can you still have it once in awhile? What are some good alternatives to it if it is unhealthy, and if it's healthy, what are some similar foods? Be appropriate and professional, do not ask for any feedback, introduce yourself, or ask for more information in any way. In other words, write this as if it were written by a human with sole purpose of conveying information to a reader. Additionally, use fairly simple terminology such that a 13 or 14 year old could easily understand. Finally, use no more than 320 words.")
+          "Overall, summarize the health quality of ${widget.servingSize} of ${widget.foodName} without using any numerical evidence, only qualitative data. Specifically, answer the following questions: How healthy or unhealthy is it and why (if it's unhealthy, can you still have it once in awhile? What are some good alternatives to it if it is unhealthy, and if it's healthy, what are some similar foods? Be appropriate and professional, do not ask for any feedback, introduce yourself, or ask for more information in any way. In other words, write this as if it were written by a human with sole purpose of conveying information to a reader. Additionally, use fairly simple terminology such that a 13 or 14 year old could easily understand. Finally, use no more than 320 words.")
     ];
 
     JUSTLOADTHESTUPIDMODEL(model, content);
+
+    List<String> tempName = widget.foodName.split(" ");
+    for(int i = 0; i < tempName.length; i++){
+        updatedName += tempName[i].substring(0, 1).toUpperCase() +
+            tempName[i].substring(1) + " ";
+        updatedName.trim();
+    }
+
   }
 
   void JUSTLOADTHESTUPIDMODEL(model, content) async {
@@ -327,6 +334,7 @@ class _FoodScreenState extends State<FoodScreen>
                                         ))),
                               ]),
                             ),
+
                             Padding(
                               padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
                               child: Column(children: [
@@ -469,12 +477,14 @@ class _FoodScreenState extends State<FoodScreen>
                                         ))),
                               ]),
                             ),
+
                             Column(children: [
+
                               SizedBox(
                                 child: Transform.translate(
                                   offset: Offset(0, -20),
                                   child: Padding(
-                                    padding: EdgeInsets.only(top: 0),
+                                    padding: EdgeInsets.fromLTRB(0, 1000, 0, 0),
                                     child: MediaQuery.of(context).size.width >
                                             1150
                                         ? Container(
@@ -511,7 +521,7 @@ class _FoodScreenState extends State<FoodScreen>
                                                           children: [
                                                             // Display food name
                                                             Text(
-                                                              widget.foodName,
+                                                              updatedName,
                                                               style: TextStyle(
                                                                 fontSize: 30,
                                                                 color: Colors
@@ -563,8 +573,7 @@ class _FoodScreenState extends State<FoodScreen>
 
                                                         // Display the Gemini text response
                                                         Text(
-                                                          geminiText +
-                                                              widget.thing,
+                                                          geminiText,
                                                           softWrap: true,
                                                           maxLines: 1000,
                                                           overflow:
@@ -628,7 +637,7 @@ class _FoodScreenState extends State<FoodScreen>
                                   children: [
                                     // Display food name
                                     Text(
-                                      widget.foodName,
+                                      updatedName,
                                       style: TextStyle(
                                         fontSize: 20,
                                         color: Colors.white,
