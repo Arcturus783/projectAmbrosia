@@ -180,10 +180,16 @@ class __HomeContentState extends State<_HomeContent> {
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
                         colors: [
+                          Color.fromARGB(255, 225, 30, 50),
+                          Color.fromARGB(255, 211, 95, 59),
+                          Color.fromARGB(230, 222, 214, 10),
+                          /*
                           Color.fromARGB(255, 133, 221, 233),
                           Color(0xFFfaf2e8),
                           Color(0xFFfdd5c8),
                           Color(0xFFf69f98),
+                          */
+
                         ],
                       ).createShader(
                         Rect.fromLTWH(0, 0, bounds.width, bounds.height),

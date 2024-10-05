@@ -225,10 +225,9 @@ class _FoodScreenState extends State<FoodScreen>
                   letterSpacing: 1.5,
                 ),
                 gradient: const LinearGradient(colors: [
-                  Color.fromARGB(255, 133, 221, 233),
-                  Color(0xFFfaf2e8),
-                  Color(0xFFfdd5c8),
-                  Color(0xFFf69f98),
+                  Color.fromARGB(255, 225, 30, 50),
+                  Color.fromARGB(255, 211, 95, 59),
+                  Color.fromARGB(230, 222, 214, 10),
                 ]),
               ),
             ),
@@ -686,8 +685,8 @@ class AnimatedGauge extends StatelessWidget {
                     cornerStyle: CornerStyle.bothCurve,
                     gradient: SweepGradient(
                       colors: <Color>[
-                        Color.fromARGB(255, 55, 157, 170),
-                        Color.fromARGB(255, 238, 137, 129),
+                        Color.fromARGB(255, 225, 30, 50),
+                        Color.fromARGB(230, 222, 214, 10),
                       ],
                       stops: <double>[0.0, 1.0],
                     ),
