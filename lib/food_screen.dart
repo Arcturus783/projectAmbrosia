@@ -62,7 +62,7 @@ class _FoodScreenState extends State<FoodScreen>
   String cholesterolResponse = "";
   String sodiumResponse = "";
   String addedSugarsResponse = "";
-  String updatedName = "sigma ";
+  String updatedName = "";
 
   @override
   void initState() {
@@ -534,37 +534,6 @@ class _FoodScreenState extends State<FoodScreen>
                                                             SizedBox(
                                                                 width:
                                                                     10), // Spacing between name and tag
-
-                                                            // Display tag with responsive color based on media query
-                                                            Container(
-                                                              padding: EdgeInsets
-                                                                  .symmetric(
-                                                                      horizontal:
-                                                                          12,
-                                                                      vertical:
-                                                                          6),
-                                                              decoration:
-                                                                  BoxDecoration(
-                                                                color: Colors
-                                                                    .green,
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            10),
-                                                              ),
-                                                              child: Text(
-                                                                '70.00',
-                                                                style:
-                                                                    TextStyle(
-                                                                  color: Colors
-                                                                      .white,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold,
-                                                                  fontSize: 16,
-                                                                ),
-                                                              ),
-                                                            ),
                                                           ],
                                                         ),
                                                         SizedBox(
@@ -637,7 +606,7 @@ class _FoodScreenState extends State<FoodScreen>
                                   children: [
                                     // Display food name
                                     Text(
-                                      updatedName,
+                                      updatedName + " " + widget.servingSize,
                                       style: TextStyle(
                                         fontSize: 20,
                                         color: Colors.white,
@@ -649,23 +618,7 @@ class _FoodScreenState extends State<FoodScreen>
                                             10), // Spacing between name and tag
 
                                     // Display tag with responsive color based on media query
-                                    Container(
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal: 8, vertical: 4),
-                                      decoration: BoxDecoration(
-                                        color: Color.fromARGB(200, 255, 190, 100),
-                                        borderRadius: BorderRadius.circular(8),
-                                      ),
-                                      child: Text(
-                                        widget.servingSize,
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 12,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
+                                                                     ],
                                 ),
                                 SizedBox(
                                     height:
